@@ -57,6 +57,10 @@ function App() {
     <main className="app">
       <h1>Min Todo-lista</h1>
 
+      <p>
+  {todos.filter((todo) => !todo.done).length} uppgifter kvar
+</p>
+
       <TodoForm onAddTodo={addTodo} />
 
       <TodoList
