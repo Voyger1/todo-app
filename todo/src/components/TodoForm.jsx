@@ -17,7 +17,7 @@ function TodoForm({ onAddTodo }) {
 }
 
 return (
-  
+
     <form className="input-area" onSubmit={handleSubmit}>
       <input
         type="text"
