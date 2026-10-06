@@ -4,14 +4,20 @@ function TodoForm({ onAddTodo }) {
   const [text, setText] = useState("");
 
   function handleSubmit(event) {
-    event.preventDefault();
+  event.preventDefault();
 
-    onAddTodo(text);
+  const trimmedText = text.trim();
 
-    setText("");
+  if (trimmedText === "") {
+    return;
   }
 
-  return (
+  onAddTodo(trimmedText);
+  setText("");
+}
+
+return (
+  
     <form className="input-area" onSubmit={handleSubmit}>
       <input
         type="text"
