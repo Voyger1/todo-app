@@ -1,16 +1,47 @@
-# React + Vite
+# Todo-app
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Om projektet
 
-Currently, two official plugins are available:
+Det här är en Todo-app som jag har byggt med React. Man kan lägga till nya uppgifter, markera dem som klara, och tar bort uppgifter. Jag har också lagt till en räknare som visar hur många uppgifter som är kvar.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Jag har delat upp koden i olika komponenter för att göra den enklare att förstå och hålla ordning på.
 
-## React Compiler
+## Frågor om koden
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+rågor om React
 
-## Expanding the ESLint configuration
+1. State-hantering
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Jag använder useState för att spara uppgifterna i min app och hålla koll på vilka som är klara. När jag lägger till, tar bort eller markerar en uppgift ändras state, och då uppdateras sidan automatiskt.
+
+2. Oföränderlighet (Immutability)
+
+Man ska inte ändra en array direkt med till exempel .push() annars kan React inte se ändringen. I stället skapar man en ny array så att React kan upptäcka ändringen. I min kod använder jag [...todos, newTodo] för att lägga till en uppgift och filter() för att ta bort en.
+
+Kodgranskning
+
+Ett problem i den här koden är att push() ändrar den gamla arrayen direkt
+
+function addTodo(todos, text) {
+  todos.push(text);
+  return todos;
+}
+
+Jag skulle i stället skapa en ny array:
+
+function addTodo(todos, text) {
+  return [...todos, text];
+}
+
+Då behåller jag de gamla uppgifterna och lägger till den nya utan att ändra den gamla arrayen med todos.push.
+
+3. Problemlösning & Reflektion
+
+När jag fastnade försökte jag först förstå vad som var fel och testade olika lösningar. Jag använde AI och sökte på nätet för att få hjälp. Till exempel tog jag hjälp för att förstå hur `useState` fungerar och hur sidan uppdateras när man ändrar en uppgift. Sedan testade jag själv i koden för att se att det fungerade.
+
+
+Videoredovisning
+
+Här finns min videoredovisning:
+
+**[https://funet-my.sharepoint.com/:v:/g/personal/3ggyhmu26_shwema_folkuniversitetet_nu/IQDLxZTY93WzT7kLQUVA0jSCAaBxw2UXFuEqIiutsfAF0kE?e=Q84myN&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbE1vZGUiOiJtaXMiLCJyZWZlcnJhbFZpZXciOiJwb3N0cm9sbC1jb3B5bGluayIsInJlZmVycmFsUGxheWJhY2tTZXNzaW9uSWQiOiJmYWY4YTg3NS0yZWJhLTRhYWQtYmNhMy00MDQyYzQ5NjYxNTEifX0%3D]**
