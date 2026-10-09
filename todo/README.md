@@ -8,8 +8,6 @@ Jag har delat upp koden i olika komponenter för att göra den enklare att förs
 
 ## Frågor om koden
 
-rågor om React
-
 1. State-hantering
 
 Jag använder useState för att spara uppgifterna i min app och hålla koll på vilka som är klara. När jag lägger till, tar bort eller markerar en uppgift ändras state, och då uppdateras sidan automatiskt.
@@ -34,6 +32,7 @@ function addTodo(todos, text) {
 }
 
 Då behåller jag de gamla uppgifterna och lägger till den nya utan att ändra den gamla arrayen med todos.push.
+
 
 3. Problemlösning & Reflektion
 
